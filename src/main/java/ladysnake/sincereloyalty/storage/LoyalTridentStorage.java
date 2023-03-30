@@ -20,10 +20,10 @@ package ladysnake.sincereloyalty.storage;
 import com.google.common.base.Preconditions;
 import ladysnake.sincereloyalty.LoyalTrident;
 import ladysnake.sincereloyalty.SincereLoyalty;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.registry.Registries;
@@ -60,7 +60,7 @@ public final class LoyalTridentStorage extends PersistentState {
 
     public static LoyalTridentStorage fromNbt(ServerWorld world, NbtCompound tag) {
         LoyalTridentStorage ret = new LoyalTridentStorage(world);
-        NbtList ownersNbt = tag.getList("trident_owners", NbtType.COMPOUND);
+        NbtList ownersNbt = tag.getList("trident_owners", NbtElement.COMPOUND_TYPE);
         for (int i = 0; i < ownersNbt.size(); i++) {
             OwnedTridents tridents = new OwnedTridents(ret);
             NbtCompound ownerNbt = ownersNbt.getCompound(i);
